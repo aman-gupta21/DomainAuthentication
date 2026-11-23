@@ -2,6 +2,10 @@
 
 Cross-platform Expo application with Google sign-in restricted to the `hbplus.fit` domain. The web build uses Firebase Authentication's Google popup flow. Native Android and iOS use Nitro Google Sign-In and exchange the Google ID token for a Firebase session.
 
+## Live deployment
+
+The web app is deployed at [https://domainauthentication.netlify.app](https://domainauthentication.netlify.app).
+
 ## Requirements
 
 - Node.js and npm
@@ -58,4 +62,6 @@ The domain check in the client controls app access and user experience. Any futu
 
 ## Web deployment
 
-The project is configured for Expo Router's static web output. Build with `npx expo export --platform web` and deploy `dist/` to Netlify. Add the deployed hostname to Firebase Authentication's Authorized domains. Add the public deployment URL here after deployment.
+The project is configured for Expo Router's static web output. Netlify uses `netlify.toml` to run `npx expo export --platform web` and publish `dist/`. The Netlify site has the `EXPO_PUBLIC_FIREBASE_*` and `EXPO_PUBLIC_ALLOWED_DOMAIN` build variables; they are not committed to Git. To publish manually, build the web export and deploy the `dist/` folder with Netlify CLI.
+
+Add `domainauthentication.netlify.app` to Firebase Authentication's **Authorized domains** so Google popup sign-in is allowed on the deployed site.
